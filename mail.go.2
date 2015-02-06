@@ -1,0 +1,33 @@
+package hello
+
+import (
+	"fmt"
+	"net/http"
+
+	"appengine"
+	"appengine/mail"
+)
+
+func init() {
+	http.HandleFunc("/", handler)
+	http.HandleFunc("/sendmail", sendmailHandler)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "<html><body><a href='/sendmail'>Send Mail</a></body></html>")
+}
+
+func sendmailHandler(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+
+	addr := []string{"sathishvj@gmail.com"}
+	msg := &mail.Message{
+		Sender:  "sathishvj@gmail.com",
+		To:      addr,
+		Subject: "Subject of test mail",
+		Body:    "This is the body of the mail",
+	}
+	if err := mail.Send(c, msg); err != nil {
+		c.Errorf("Couldn't send email: %v", err)
+	}
+}

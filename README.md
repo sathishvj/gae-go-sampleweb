@@ -3,3 +3,7 @@ This project contains small chunks of code to demonstrate Google AppEngine devel
 * The numbered extensions are the sequence in which I intend to do the demo.
 * Each of the go files should be copied to just a .go file without the number extension.
 * Then run ```goapp serve``` from within the folder.
+
+# Slides
+
+[View Slides](http://talks.godoc.org/github.com/sathishvj/gae-go-sampleweb/present.slide)

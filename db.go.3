@@ -1,17 +1,21 @@
 package helloappengine
 
+// show import OMIT
 import (
 	"appengine"
 	"appengine/datastore"
+// end show import OMIT
 	"html/template"
 	"net/http"
 	"time"
 )
 
+// show type OMIT
 type Info struct {
 	Data string
 	Time time.Time
 }
+// end show type OMIT
 
 func init() {
 	http.HandleFunc("/", onRoot)
@@ -33,13 +37,14 @@ func onAdd(w http.ResponseWriter, r *http.Request) {
 }
 
 func addInfo(c appengine.Context, s string) {
+// show put OMIT
 	key := datastore.NewIncompleteKey(c, "Info", nil)
-
 	newInfo := Info{
 		s,
 		time.Now(),
 	}
 	datastore.Put(c, key, &newInfo)
+// end show put OMIT
 }
 
 var tmplStr = `

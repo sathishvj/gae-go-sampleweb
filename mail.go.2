@@ -1,11 +1,15 @@
 package hello
 
+// show import OMIT
 import (
+// end show import OMIT
 	"fmt"
 	"net/http"
 
+// show imports OMIT
 	"appengine"
 	"appengine/mail"
+// end show imports OMIT
 )
 
 func init() {
@@ -21,6 +25,7 @@ func sendmailHandler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
 	addr := []string{"sathishvj@gmail.com"}
+// show sendmail OMIT
 	msg := &mail.Message{
 		Sender:  "sathishvj@gmail.com",
 		To:      addr,
@@ -30,4 +35,5 @@ func sendmailHandler(w http.ResponseWriter, r *http.Request) {
 	if err := mail.Send(c, msg); err != nil {
 		c.Errorf("Couldn't send email: %v", err)
 	}
+// end show sendmail OMIT
 }
